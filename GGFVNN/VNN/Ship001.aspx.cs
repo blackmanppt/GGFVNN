@@ -13,10 +13,10 @@ namespace GGFPortal.VNN
         static string strConnectString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["GGFConnectionString"].ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["username"] == null)
-            //    Response.Redirect("~/LoginIndex.aspx");
-            //else if (Session["username"].ToString() != "VNN")
-            //    Response.Redirect("~/LoginIndex.aspx");
+            if (Session["username"] == null)
+                Response.Redirect("~/LoginIndex.aspx");
+            else if (Session["username"].ToString() != "VNN")
+                Response.Redirect("~/LoginIndex.aspx");
             StartTB.Attributes["readonly"] = "readonly";
             EndTB.Attributes["readonly"] = "readonly";
             //if (YearDDL.Items.Count == 0)
@@ -57,17 +57,17 @@ namespace GGFPortal.VNN
         }
         protected void DbInit()
         {
-            if (!String.IsNullOrEmpty(StartTB.Text) && !String.IsNullOrEmpty(EndTB.Text))
-            {
-                if (DateTime.Parse( StartTB.Text)> DateTime.Parse(EndTB.Text))
-                {
-                    MessageLT.Text = @"                            
-                                    <div class='form-group'>
-                                        <h3 class='text-info text-center'>出貨日期錯誤 </ h3 >
-                                    </div>";
-                }
-                else
-                {
+            //if (!String.IsNullOrEmpty(StartTB.Text) && !String.IsNullOrEmpty(EndTB.Text))
+            //{
+            //    if (DateTime.Parse( StartTB.Text)> DateTime.Parse(EndTB.Text))
+            //    {
+            //        MessageLT.Text = @"                            
+            //                        <div class='form-group'>
+            //                            <h3 class='text-info text-center'>出貨日期錯誤 </ h3 >
+            //                        </div>";
+            //    }
+            //    else
+            //    {
                     DataTable dt = new DataTable();
                     using (SqlConnection Conn = new SqlConnection(strConnectString))
                     {
@@ -92,12 +92,12 @@ namespace GGFPortal.VNN
                                         <h3 class='text-info text-center'>沒有資料 </ h3 >
                                     </div>";
                     }
-                }
-            }
-            else
-            {
+            //    }
+            //}
+            //else
+            //{
                 
-            }
+            //}
 
         }
 

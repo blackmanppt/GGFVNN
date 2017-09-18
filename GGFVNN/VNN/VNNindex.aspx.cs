@@ -11,7 +11,10 @@ namespace GGFVNN.VNN
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["username"] == null)
+                Response.Redirect("~/LoginIndex.aspx");
+            else if (Session["username"].ToString() != "VNN")
+                Response.Redirect("~/LoginIndex.aspx");
         }
     }
 }

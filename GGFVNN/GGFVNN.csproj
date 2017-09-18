@@ -82,6 +82,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Public\FAC001.aspx" />
     <Content Include="Scripts\bootstrap-theme.min.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.css" />
@@ -123,6 +124,13 @@
       <DependentUpon>LoginTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\FAC001.aspx.cs">
+      <DependentUpon>FAC001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Public\FAC001.aspx.designer.cs">
+      <DependentUpon>FAC001.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VNN\DS\ShipDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

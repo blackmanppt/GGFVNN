@@ -32,7 +32,7 @@
                             <h4>年</h4>
 <asp:DropDownList ID="YearDDL" runat="server" class="form-control"></asp:DropDownList>
 						</div> --%>
-                    <h4>訂單日期</h4>
+                    <h4>出貨日期</h4>
                     <div class="form-group">
                         <asp:TextBox ID="StartTB" runat="server" class="form-control"></asp:TextBox>
                         <ajaxToolkit:calendarextender ID="StartTB_CalendarExtender" runat="server" BehaviorID="StartTB_CalendarExtender" TargetControlID="StartTB" Format="yyyy-MM-dd"/>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-10">
                     <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="768px" Width="1024px" Visible="False" >
-                        <LocalReport ReportPath="VNN\Report\Report1.rdlc" DisplayName="訂單資料">
+                        <LocalReport ReportPath="VNN\Report\Report1.rdlc" DisplayName="出口大表">
                         </LocalReport>
                     </rsweb:ReportViewer>
                 </div>
