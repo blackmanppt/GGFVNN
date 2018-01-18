@@ -45,7 +45,7 @@ namespace GGFVNN.Public
                         left join ordc_bah1 b on a.site =b.site and a.ord_nbr=b.ord_nbr and b.bah_status<>'CA'
                         where a.assign_close ='N' 
                         and a.item_no like '{0}%' 
-                        and a.status<>'CA' and b.cus_item_no is not null and a.ord_nbr in (select  ord_nbr from mpsc_manuf mpsc_manuf where status not in ('CA','CL'))  ", Session["username"].ToString());
+                        and a.status<>'CA' and b.cus_item_no is not null and a.ord_nbr in (select  ord_nbr from mpsc_manuf mpsc_manuf where upper(status)  in ('NA','OP'))  ", Session["username"].ToString());
             using (SqlConnection connection = new SqlConnection(strConnectString))
             {
                 SqlDataAdapter myAdapter = new SqlDataAdapter(strsql, connection);
@@ -60,6 +60,7 @@ namespace GGFVNN.Public
                 int iCutPreQty, iSewPreQty, iQCPreQty, iIrionPreQty, iPackPreQty, iOrderQty;
                 //string strCutEfficient, strSewEfficient, strQCEfficient, strIrionEfficient, strPackEfficient;
                 int iCutAccumulation, iSewAccumulation, iQCAccumulation, iIrionAccumulation, iPackAccumulation;
+                
 
                 strStyleNO = (dr["cus_item_no"] == DBNull.Value) ? "" : dr["cus_item_no"].ToString();
                 iOrderQty = (dr["ord_qty"] == DBNull.Value) ? 0 : Convert.ToInt32((decimal)dr["ord_qty"]);
@@ -217,30 +218,27 @@ namespace GGFVNN.Public
                                     , iOrderQty
                                     , strCutOnLineDate
                                     , iCutPreQty
-                                    , iCutPreQty / iOrderQty
                                     , iCutAccumulation
+                                    , ((float)iCutPreQty / (float)iOrderQty * 100).ToString("0.00")
                                     , strSewOnLineDate
                                     , iSewPreQty
                                     , iSewAccumulation
-                                    , iCutPreQty / iOrderQty
+                                    , ((float)iSewPreQty / (float)iOrderQty * 100).ToString("0.00")
                                     , strQCOnLineDate
                                     , iQCPreQty
                                     , iQCAccumulation
-                                    , iQCPreQty / iOrderQty
+                                    , ((float)iQCPreQty / (float)iOrderQty * 100).ToString("0.00")
                                     , strShippingDate
                                     , strFinishQty
                                     , strIrionOnLineDate
                                     , iIrionPreQty
                                     , iIrionAccumulation
-                                    , iIrionPreQty / iOrderQty
+                                    , ((float)iIrionPreQty / (float)iOrderQty * 100).ToString("0.00")
                                     , strPackOnLineDate
                                     , iPackPreQty
                                     , iPackAccumulation
-                                    , iPackPreQty / iOrderQty
+                                    , ((float)iPackPreQty / (float)iOrderQty * 100).ToString("0.00")
                                     );
-
-
-
 
             }
             strhtmltitle = @"<img src='../IMG/GGF.gif' width='80' higth='80'>";
