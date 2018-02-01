@@ -107,6 +107,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\GGFVNNDeployPage.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstraptemp.css" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -117,6 +118,7 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\style.css" />
     <Content Include="Test\test001.aspx" />
+    <Content Include="VNN\VN001.aspx" />
     <Content Include="VNN\Ship001.aspx" />
     <Content Include="VNN\VN002.aspx" />
     <Content Include="VNN\VNNindex.aspx" />
@@ -168,6 +170,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ShipDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VNN\VN001.aspx.cs">
+      <DependentUpon>VN001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VNN\VN001.aspx.designer.cs">
+      <DependentUpon>VN001.aspx</DependentUpon>
     </Compile>
     <Compile Include="VNN\Ship001.aspx.cs">
       <DependentUpon>Ship001.aspx</DependentUpon>
@@ -236,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VNN\Report\Report1.rdlc" />
+    <EmbeddedResource Include="VNN\Report\工段匯入.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

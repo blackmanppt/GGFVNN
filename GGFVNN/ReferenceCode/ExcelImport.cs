@@ -35,27 +35,27 @@ namespace GGFVNN.ReferenceCode
             ExcelTable.Columns.Add("款號");
             ExcelTable.Columns.Add("組別");
             ExcelTable.Columns.Add("日期");
-            ExcelTable.Columns.Add("工號1");
-            ExcelTable.Columns.Add("1工段1");
-            ExcelTable.Columns.Add("1數量1");
-            ExcelTable.Columns.Add("1工段2");
-            ExcelTable.Columns.Add("1數量2");
-            ExcelTable.Columns.Add("1工段3");
-            ExcelTable.Columns.Add("1數量3");
-            ExcelTable.Columns.Add("工號2");
-            ExcelTable.Columns.Add("2工段1");
-            ExcelTable.Columns.Add("2數量1");
-            ExcelTable.Columns.Add("2工段2");
-            ExcelTable.Columns.Add("2數量2");
-            ExcelTable.Columns.Add("2工段3");
-            ExcelTable.Columns.Add("2數量3");
-            ExcelTable.Columns.Add("工號3");
-            ExcelTable.Columns.Add("3工段1");
-            ExcelTable.Columns.Add("3數量1");
-            ExcelTable.Columns.Add("3工段2");
-            ExcelTable.Columns.Add("3數量2");
-            ExcelTable.Columns.Add("3工段3");
-            ExcelTable.Columns.Add("3數量3");
+            ExcelTable.Columns.Add("工號");
+            ExcelTable.Columns.Add("工段");
+            ExcelTable.Columns.Add("數量");
+            //ExcelTable.Columns.Add("1工段2");
+            //ExcelTable.Columns.Add("1數量2");
+            //ExcelTable.Columns.Add("1工段3");
+            //ExcelTable.Columns.Add("1數量3");
+            //ExcelTable.Columns.Add("工號2");
+            //ExcelTable.Columns.Add("2工段1");
+            //ExcelTable.Columns.Add("2數量1");
+            //ExcelTable.Columns.Add("2工段2");
+            //ExcelTable.Columns.Add("2數量2");
+            //ExcelTable.Columns.Add("2工段3");
+            //ExcelTable.Columns.Add("2數量3");
+            //ExcelTable.Columns.Add("工號3");
+            //ExcelTable.Columns.Add("3工段1");
+            //ExcelTable.Columns.Add("3數量1");
+            //ExcelTable.Columns.Add("3工段2");
+            //ExcelTable.Columns.Add("3數量2");
+            //ExcelTable.Columns.Add("3工段3");
+            //ExcelTable.Columns.Add("3數量3");
 
             //if (!string.IsNullOrEmpty(Team))
             //{
