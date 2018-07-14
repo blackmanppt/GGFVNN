@@ -18,6 +18,7 @@ namespace GGFVNN.VNN
         
         static string strConnectString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBConnectionString"].ToString();
         static string strConnectString1 = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["GGFConnectionString"].ToString();
+        static string strGGMConnectString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["GGMConnectionString"].ToString();
         //static string strImportType = "Package";
         string strArea = "";
         //string strImportType = "";
@@ -211,19 +212,65 @@ namespace GGFVNN.VNN
 
             if (!string.IsNullOrEmpty(row.GetCell(0).ToString()))
             {
-                str閱卷序號 = row.GetCell(0).ToString().ToUpper();
-                sbError.AppendFormat("閱卷序號：{0}", str閱卷序號);
+                if (row.GetCell(0).ToString().ToUpper() == "NULL")
+                {
+                    berror = 錯誤訊息(sbError, "閱卷序號資料為NULL");
+                }
+                else
+                { 
+                    str閱卷序號 = row.GetCell(0).ToString().ToUpper();
+                    sbError.AppendFormat("閱卷序號：{0}", str閱卷序號);
+                }
             }
             if (!string.IsNullOrEmpty(row.GetCell(1).ToString()))
             {
-                str款號 = row.GetCell(1).ToString().ToUpper();
+                if (row.GetCell(1).ToString().ToUpper() == "NULL")
+                {
+                    berror = 錯誤訊息(sbError, "款號資料為NULL");
+                }
+                else
+                {
+                    str款號 = row.GetCell(1).ToString().ToUpper();
+                    using (SqlConnection conn = new SqlConnection(strConnectString1))
+                    {
+                        try
+                        {
+                            SqlCommand command = new SqlCommand();
+                            command.Connection = conn;
+                            command.CommandText = @"SELECT top 1
+                                                *
+                                            FROM [dbo].[ordc_bah1]
+                                            where [cus_item_no] = @cus_item_no";
+                            command.CommandType = CommandType.Text;
+                            command.Parameters.Add("@cus_item_no", SqlDbType.NVarChar).Value = str款號;
+                            conn.Open();
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (!reader.HasRows)
+                            {
+                                berror = 錯誤訊息(sbError, "無訂單款號資料");
+                            }
+                            reader.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            berror = 錯誤訊息(sbError, "搜尋訂單款號資料異常"+ex.ToString());
+                        }
+                    }
+                }
+                    
             }
             else
                 berror = 錯誤訊息(sbError, "沒有款號、");
 
             if (!string.IsNullOrEmpty(row.GetCell(2).ToString()))
             {
-                str組別 = row.GetCell(2).ToString().ToUpper();
+                if (row.GetCell(2).ToString().ToUpper()=="NULL")
+                {
+                    berror = 錯誤訊息(sbError, "組別資料為NULL");
+                }
+                else
+                    str組別 = row.GetCell(2).ToString().ToUpper();
             }
             else
                 berror = 錯誤訊息(sbError, "沒有組別、");
@@ -246,8 +293,8 @@ namespace GGFVNN.VNN
                 //檢查1~3工段數量
                 for (int zz = 0; zz < 5; zz = zz + 2)
                 {
-                    string str工段 = "", str數量 = "";
-                    bool b工段Error = false, b數量Error = false;
+                    string str工段 = "", str數量 = "", str工段轉換="";
+                    bool b工段Error = false, b數量Error = false,b工段轉換Error=false;
                     DataRow D_dataRow = D_table.NewRow();
                     DataRow D_erroraRow = D_errortable.NewRow();
                     D_dataRow[0] = str頁簽名稱;
@@ -261,7 +308,44 @@ namespace GGFVNN.VNN
                     }
                     else
                         b工段Error = true;
-
+                    //工段轉換
+                    if (!b工段Error && !berror)
+                    {
+                        using (SqlConnection conn = new SqlConnection(strGGMConnectString))
+                        {
+                            try
+                            {
+                                SqlCommand command = new SqlCommand();
+                                command.Connection = conn;
+                                command.CommandText = @"SELECT top 1
+                                                [STP_ID]
+                                            FROM [dbo].[FILH01A]
+                                            where rtrim(ltrim([SEQ_NO])) = @SEQ_NO and rtrim(ltrim([ORD_NO])) = @ORD_NO";
+                                command.CommandType = CommandType.Text;
+                                command.Parameters.Add("@SEQ_NO", SqlDbType.NVarChar).Value = str工段.Trim();
+                                command.Parameters.Add("@ORD_NO", SqlDbType.NVarChar).Value = str款號.Trim();
+                                conn.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                
+                                if (reader.HasRows)
+                                {
+                                    reader.Read();
+                                    str工段 = reader["STP_ID"].ToString();
+                                }
+                                else
+                                {
+                                    b工段轉換Error = true;
+                                    str工段轉換 = "工段資料轉換失敗,沒有資料";
+                                }
+                                reader.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                b工段轉換Error = true;
+                                str工段轉換 = " 工段資料轉換失敗,沒有資料,"+ex.ToString();
+                            }
+                        }
+                    }
                     if (!string.IsNullOrEmpty(row.GetCell(z + zz + 2).ToString()))
                     {
                         str數量 = row.GetCell(z + zz + 2).ToString();
@@ -270,14 +354,14 @@ namespace GGFVNN.VNN
                     }
                     else
                         b數量Error = true;
-
+              
                     //工段2，3沒資料跳過
                     if (str數量 == "" && str工段 == "" && zz > 0)
                         continue;
                     if (str數量 == "" && str工段 == "" && str工號 == "")
                         continue;
 
-                    if (b工段Error || b數量Error || berror || b工號Error)
+                    if (b工段Error || b數量Error || berror || b工號Error || b工段轉換Error)
                     {
                         if (b工號Error)
                             錯誤訊息(sbError, string.Format(" 工號錯誤：{0}", (str工號 == "") ? "沒有工號" : str工號));
@@ -285,7 +369,8 @@ namespace GGFVNN.VNN
                             錯誤訊息(sbError, string.Format(" 工段錯誤：{0}", (str工段 == "") ? "沒有工段" : str工段));
                         if (b數量Error)
                             錯誤訊息(sbError, string.Format(" 數量錯誤：{0}", (str數量 == "") ? "數量為0" : str數量));
-
+                        if(b工段轉換Error)
+                            錯誤訊息(sbError, str工段轉換);
                         //str閱卷序號 = "", str款號 = "", str組別 = "", str日期 = "";
                         //D_erroraRow[0] = str頁簽名稱;
                         D_erroraRow[0] = str閱卷序號;

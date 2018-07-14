@@ -45,7 +45,8 @@ namespace GGFVNN.Public
                         left join ordc_bah1 b on a.site =b.site and a.ord_nbr=b.ord_nbr and b.bah_status<>'CA'
                         where a.assign_close ='N' 
                         and a.item_no like '{0}%' 
-                        and a.status<>'CA' and b.cus_item_no is not null and a.ord_nbr in (select  ord_nbr from mpsc_manuf mpsc_manuf where upper(status)  in ('NA','OP'))  ", Session["username"].ToString());
+                        and a.status<>'CA' and b.cus_item_no is not null and a.ord_nbr in (select  ord_nbr from mpsc_manuf mpsc_manuf where upper(status)  in ('NA','OP'))  
+                        order by a.modify_date desc", Session["username"].ToString());
             using (SqlConnection connection = new SqlConnection(strConnectString))
             {
                 SqlDataAdapter myAdapter = new SqlDataAdapter(strsql, connection);
@@ -95,8 +96,8 @@ namespace GGFVNN.Public
 
                 sbbody.AppendFormat(
                 #region html
-                    @"            
-                    <br>
+                    @"     
+<br>
                     <HR color='#000000' size='1' width='100%'  align='left'>
                     <HR color='#696969' size='5' width='100%'  align='left'>
                     <div id='container'> 
@@ -125,7 +126,7 @@ namespace GGFVNN.Public
                     <tr>
 
                     <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: Lime;' lang='EN-US'>{0}</span></b></td>
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; ' lang='EN-US'>{0}</span></b></td>
                     <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
                     &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{1}</span></b></td>
                     <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
@@ -163,42 +164,6 @@ namespace GGFVNN.Public
                     <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
                     &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'>FINISHED QTY</span></b></td>
                     <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{10}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'>QC</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{11}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{12}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{13}
-                    </span></b></td>
-                    </tr>
-
-                    <tr>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: Lime;' lang='EN-US'>{14}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{15}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{16}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'>IRIONING</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{17}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{18}</span></b></td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
-                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{19}
-                    </span></b></td>
-                    </tr>
-
-                    <tr>
-                    <td style='vertical-align: top;'><br>
-                    </td>
-                    <td style='vertical-align: top;'><br>
-                    </td>
-                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
                     &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{20}</span></b></td>
                     <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
                     &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'>PACKING</span></b></td>
@@ -210,9 +175,45 @@ namespace GGFVNN.Public
                     &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{23}
                     </span></b></td>
                     </tr>
+
+                    <tr>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: #ffffff;' lang='EN-US'>{14}</span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>{15}</span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    </tr>
+
+                    <tr>
+                    <td style='vertical-align: top;'><br>
+                    </td>
+                    <td style='vertical-align: top;'><br>
+                    </td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 10pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: black;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'></span></b></td>
+                    <td style='vertical-align: top;'><b><span style='font-size: 12pt; font-family: 
+                    &quot;&#26032;&#32048;&#26126;&#39636;&quot;,serif; color: red;' lang='EN-US'>
+                    </span></b></td>
+                    </tr>
                     </tbody>
                     </table>
-                    </div> "
+                    </div>        
+                    "
                 #endregion
                                     , strStyleNO
                                     , iOrderQty
