@@ -233,29 +233,29 @@ namespace GGFVNN.VNN
                     str款號 = row.GetCell(1).ToString().ToUpper();
                     using (SqlConnection conn = new SqlConnection(strConnectString1))
                     {
-                        try
-                        {
-                            SqlCommand command = new SqlCommand();
-                            command.Connection = conn;
-                            command.CommandText = @"SELECT top 1
-                                                *
-                                            FROM [dbo].[ordc_bah1]
-                                            where [cus_item_no] = @cus_item_no";
-                            command.CommandType = CommandType.Text;
-                            command.Parameters.Add("@cus_item_no", SqlDbType.NVarChar).Value = str款號;
-                            conn.Open();
-                            SqlDataReader reader = command.ExecuteReader();
+                        //try
+                        //{
+                        //    SqlCommand command = new SqlCommand();
+                        //    command.Connection = conn;
+                        //    command.CommandText = @"SELECT top 1
+                        //                        *
+                        //                    FROM [dbo].[ordc_bah1]
+                        //                    where [cus_item_no] = @cus_item_no";
+                        //    command.CommandType = CommandType.Text;
+                        //    command.Parameters.Add("@cus_item_no", SqlDbType.NVarChar).Value = str款號;
+                        //    conn.Open();
+                        //    SqlDataReader reader = command.ExecuteReader();
 
-                            if (!reader.HasRows)
-                            {
-                                berror = 錯誤訊息(sbError, "無訂單款號資料");
-                            }
-                            reader.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            berror = 錯誤訊息(sbError, "搜尋訂單款號資料異常"+ex.ToString());
-                        }
+                        //    if (!reader.HasRows)
+                        //    {
+                        //        berror = 錯誤訊息(sbError, "無訂單款號資料");
+                        //    }
+                        //    reader.Close();
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    berror = 錯誤訊息(sbError, "搜尋訂單款號資料異常"+ex.ToString());
+                        //}
                     }
                 }
                     
