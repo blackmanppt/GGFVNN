@@ -7,7 +7,7 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace GGFVNN.VNN {
+namespace GGFGAMA.VNN {
     
     
     public partial class WebForm1 {

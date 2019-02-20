@@ -1,4 +1,4 @@
-﻿  <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VN002.aspx.cs" Inherits="GGFVNN.VNN.VN002" %>
+﻿  <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VN002.aspx.cs" Inherits="GGFGAMA.VNN.VN002" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 

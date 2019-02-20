@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginIndex.aspx.cs" Inherits="GGFVNN.LoginIndex" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginIndex.aspx.cs" Inherits="GGFGAMA.LoginIndex" %>
 
 <!DOCTYPE html>
 

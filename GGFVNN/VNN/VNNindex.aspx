@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VNNindex.aspx.cs" Inherits="GGFVNN.VNN.VNNindex" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VNNindex.aspx.cs" Inherits="GGFGAMA.VNN.VNNindex" %>
 
 <!DOCTYPE html>
 

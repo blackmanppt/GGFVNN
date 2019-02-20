@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VN001.aspx.cs" Inherits="GGFVNN.VNN.VN001" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VN001.aspx.cs" Inherits="GGFGAMA.VNN.VN001" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 

@@ -7,7 +7,7 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace GGFVNN.Test {
+namespace GGFGAMA.Test {
     
     
     public partial class test001 {

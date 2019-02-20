@@ -5,11 +5,11 @@ using NPOI.XSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
 using System.Data.SqlClient;
-using GGFVNN.ReferenceCode;
+using GGFGAMA.ReferenceCode;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace GGFVNN.VNN
+namespace GGFGAMA.VNN
 {
     public partial class VN002 : System.Web.UI.Page
     {
@@ -207,7 +207,7 @@ namespace GGFVNN.VNN
             bool berror = false;
             StringBuilder sbError = new StringBuilder();
             string str閱卷序號 = "", str款號 = "", str組別 = "", str日期 = "";
-            string strRegex工號 = "V[0-9]{4}", strRegex工段 = "[0-9]{3}", strRegex數量 = "[0-9]{4}";
+            string strRegex工號 = "(G|N)[0-9]{4}", strRegex工段 = "[0-9]{3}", strRegex數量 = "[0-9]{4}";
             //string strRegex日期 = "\\b(?<year>\\d{4})(?<month>\\d{2})(?<day>\\d{2})\\b";
 
             if (!string.IsNullOrEmpty(row.GetCell(0).ToString()))
@@ -286,6 +286,9 @@ namespace GGFVNN.VNN
                     str工號 = row.GetCell(z).ToString().Trim().ToUpper();
                     Regex reg = new Regex(strRegex工號);
                     b工號Error = (!reg.IsMatch(str工號) && str工號.Length != 5) ? true : false;
+                    //工號轉換
+                    if(!b工號Error)
+                        str工號 = (str工號.Substring(0, 1) == "N") ? "NGM" + str工號.Substring(1) : "GM" + str工號.Substring(1);
                 }
                 else
                     b工號Error = true;
@@ -326,7 +329,7 @@ namespace GGFVNN.VNN
                                 command.Parameters.Add("@ORD_NO", SqlDbType.NVarChar).Value = str款號.Trim();
                                 conn.Open();
                                 SqlDataReader reader = command.ExecuteReader();
-                                
+
                                 if (reader.HasRows)
                                 {
                                     reader.Read();
@@ -342,7 +345,7 @@ namespace GGFVNN.VNN
                             catch (Exception ex)
                             {
                                 b工段轉換Error = true;
-                                str工段轉換 = " 工段資料轉換失敗,沒有資料,"+ex.ToString();
+                                str工段轉換 = " 工段資料轉換失敗,沒有資料," + ex.ToString();
                             }
                         }
                     }
@@ -480,13 +483,13 @@ namespace GGFVNN.VNN
                                                        ,@數量
                                                         )
                                                        ", iIndex);
-                                        command1.Parameters.Add("@閱卷序號", SqlDbType.NVarChar).Value = dt.Rows[i]["閱卷序號"].ToString();
-                                        command1.Parameters.Add("@款號", SqlDbType.NVarChar).Value = dt.Rows[i]["款號"].ToString();
-                                        command1.Parameters.Add("@組別", SqlDbType.NVarChar).Value = dt.Rows[i]["組別"].ToString();
-                                        command1.Parameters.Add("@日期", SqlDbType.NVarChar).Value = dt.Rows[i]["日期"].ToString();
-                                        command1.Parameters.Add("@工號", SqlDbType.NVarChar).Value = dt.Rows[i]["工號"].ToString();
-                                        command1.Parameters.Add("@工段", SqlDbType.NVarChar).Value = dt.Rows[i]["工段"].ToString();
-                                        command1.Parameters.Add("@數量", SqlDbType.NVarChar).Value = dt.Rows[i]["數量"].ToString();
+                                        command1.Parameters.Add("@閱卷序號", SqlDbType.NVarChar).Value = (dt.Rows[i]["閱卷序號"] == null)?"":dt.Rows[i]["閱卷序號"].ToString();
+                                        command1.Parameters.Add("@款號", SqlDbType.NVarChar).Value = (dt.Rows[i]["款號"]==null)?"":dt.Rows[i]["款號"].ToString();
+                                        command1.Parameters.Add("@組別", SqlDbType.NVarChar).Value = (dt.Rows[i]["組別"]==null)?"":dt.Rows[i]["組別"].ToString();
+                                        command1.Parameters.Add("@日期", SqlDbType.NVarChar).Value = (dt.Rows[i]["日期"]==null)?"":dt.Rows[i]["日期"].ToString();
+                                        command1.Parameters.Add("@工號", SqlDbType.NVarChar).Value = (dt.Rows[i]["工號"] == null) ? "" : dt.Rows[i]["工號"].ToString();
+                                        command1.Parameters.Add("@工段", SqlDbType.NVarChar).Value = (dt.Rows[i]["工段"] == null) ? "" : dt.Rows[i]["工段"].ToString();
+                                        command1.Parameters.Add("@數量", SqlDbType.NVarChar).Value = (dt.Rows[i]["數量"] == null) ? "" : dt.Rows[i]["數量"].ToString();
                                         
                                         command1.ExecuteNonQuery();
                                         command1.Parameters.Clear();

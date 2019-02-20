@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="A001.aspx.cs" Inherits="GGFVNN.AZ.A001" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="A001.aspx.cs" Inherits="GGFGAMA.AZ.A001" %>
 
 <!DOCTYPE html>
 

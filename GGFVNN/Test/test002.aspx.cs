@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GGFVNN.Test
+namespace GGFGAMA.Test
 {
     public partial class test002 : System.Web.UI.Page
     {

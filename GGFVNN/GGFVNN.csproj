@@ -282,6 +282,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="ExcelUpLoad\VN\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="VNN\Ship\" />
   </ItemGroup>
   <ItemGroup>

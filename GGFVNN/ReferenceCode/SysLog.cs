@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace GGFVNN.ReferenceCode
+namespace GGFGAMA.ReferenceCode
 {
     public class SysLog
     {

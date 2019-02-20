@@ -7,7 +7,7 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace GGFVNN {
+namespace GGFGAMA {
     
     
     public partial class LoginIndex {

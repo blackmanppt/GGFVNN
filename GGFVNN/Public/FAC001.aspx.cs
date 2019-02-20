@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace GGFVNN.Public
+namespace GGFGAMA.Public
 {
     public partial class A001 : System.Web.UI.Page
     {

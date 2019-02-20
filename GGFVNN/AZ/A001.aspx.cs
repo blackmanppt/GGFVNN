@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GGFVNN.AZ
+namespace GGFGAMA.AZ
 {
     public partial class A001 : System.Web.UI.Page
     {

@@ -8,7 +8,7 @@ using NPOI.XSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.HSSF.UserModel;
 
-namespace GGFVNN.ReferenceCode
+namespace GGFGAMA.ReferenceCode
 {
     public class DataCheck
     {

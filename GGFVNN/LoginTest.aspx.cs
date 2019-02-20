@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GGFVNN
+namespace GGFGAMA
 {
     public partial class LoginTest : System.Web.UI.Page
     {

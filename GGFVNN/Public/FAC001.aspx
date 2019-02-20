@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FAC001.aspx.cs" Inherits="GGFVNN.Public.A001" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FAC001.aspx.cs" Inherits="GGFGAMA.Public.A001" %>
 
 <!DOCTYPE html>
 

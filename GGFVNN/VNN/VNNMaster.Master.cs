@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace GGFVNN.VNN
+namespace GGFGAMA.VNN
 {
     public partial class VNNMaster : System.Web.UI.MasterPage
     {

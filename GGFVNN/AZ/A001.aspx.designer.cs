@@ -7,7 +7,7 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace GGFVNN.AZ {
+namespace GGFGAMA.AZ {
     
     
     public partial class A001 {

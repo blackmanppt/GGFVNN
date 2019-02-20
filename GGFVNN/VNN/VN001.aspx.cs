@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace GGFVNN.VNN
+namespace GGFGAMA.VNN
 {
 
     public partial class VN001 : System.Web.UI.Page

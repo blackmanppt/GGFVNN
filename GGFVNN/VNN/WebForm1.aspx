@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/VNN/VNNMaster.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="GGFVNN.VNN.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/VNN/VNNMaster.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="GGFGAMA.VNN.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
