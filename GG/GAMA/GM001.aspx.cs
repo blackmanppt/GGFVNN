@@ -43,7 +43,7 @@ namespace GG.GAMA
                     savePath = savePath + fileName;
                     FileUpload1.SaveAs(savePath);
                     string str頁簽名稱 = "";
-                    Label1.Text = "excel load success---- " + fileName;
+                    Label1.Text = "File upload succeeded ,please check data is correct ---- " + fileName;
                     //--------------------------------------------------
                     //---- （以上是）上傳 FileUpload的部分，成功運作！
                     //--------------------------------------------------
@@ -149,7 +149,7 @@ namespace GG.GAMA
                 }
                 else
                 {
-                    Label1.Text = "????  ...... Please check excel";
+                    Label1.Text = "Upload data first.";
                 }   // FileUpload使用的第一個 if判別式
 
                 if (D_table.Rows.Count > 0)
@@ -174,9 +174,9 @@ namespace GG.GAMA
             else
             {
                 if (F_CheckData() == false)
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('There is already import on the day');</script>");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('this day have data');</script>");
                 else
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Please Check upday');</script>");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Please chose date');</script>");
             }
 
         }
@@ -186,14 +186,14 @@ namespace GG.GAMA
             bool berror = false;
             StringBuilder sbError = new StringBuilder();
             string str閱卷序號 = "", str款號 = "", str組別 = "";
-            string strRegex工號 = "(G|N)[0-9]{4}", strRegex工段 = "[0-9]{3}", strRegex數量 = "[0-9]{4}";
+            string strRegex工號 = "(M|N)[0-9]{4}", strRegex工段 = "[0-9]{3}", strRegex數量 = "[0-9]{4}";
             //string strRegex日期 = "\\b(?<year>\\d{4})(?<month>\\d{2})(?<day>\\d{2})\\b";
 
             if (!string.IsNullOrEmpty(row.GetCell(0).ToString()))
             {
                 if (row.GetCell(0).ToString().ToUpper() == "NULL")
                 {
-                    berror = 錯誤訊息(sbError, "閱卷序號資料為NULL");
+                    berror = 錯誤訊息(sbError, "閱卷序號 is NULL");
                 }
                 else
                 {
@@ -205,7 +205,7 @@ namespace GG.GAMA
             {
                 if (row.GetCell(1).ToString().ToUpper() == "NULL")
                 {
-                    berror = 錯誤訊息(sbError, "Style is NULL");
+                    berror = 錯誤訊息(sbError, "style is Null");
                 }
                 else
                 {
@@ -240,19 +240,19 @@ namespace GG.GAMA
 
             }
             else
-                berror = 錯誤訊息(sbError, "no style、");
+                berror = 錯誤訊息(sbError, "No style、");
 
             if (!string.IsNullOrEmpty(row.GetCell(2).ToString()))
             {
                 if (row.GetCell(2).ToString().ToUpper() == "NULL")
                 {
-                    berror = 錯誤訊息(sbError, "組別資料為NULL");
+                    berror = 錯誤訊息(sbError, "Line is Null、");
                 }
                 else
                     str組別 = row.GetCell(2).ToString().ToUpper();
             }
             else
-                berror = 錯誤訊息(sbError, "沒有組別、");
+                berror = 錯誤訊息(sbError, "Line is Null、");
 
             for (int z = 3; z < 24; z = z + 7)
             {
@@ -317,14 +317,15 @@ namespace GG.GAMA
                                 else
                                 {
                                     b工段轉換Error = true;
-                                    str工段轉換 = "工段資料轉換失敗,沒有資料";
+                                    //str工段轉換 = "工段資料轉換失敗,沒有資料";
+                                    str工段轉換 = "work convert is faile,work is no data";
                                 }
                                 reader.Close();
                             }
                             catch (Exception ex)
                             {
                                 b工段轉換Error = true;
-                                str工段轉換 = " 工段資料轉換失敗,沒有資料," + ex.ToString();
+                                str工段轉換 = " work convert is faile,work is no data," + ex.ToString();
                             }
                         }
                     }
@@ -346,11 +347,11 @@ namespace GG.GAMA
                     if (b數量Error || berror || b工號Error )
                     {
                         if (b工號Error)
-                            錯誤訊息(sbError, string.Format(" 工號錯誤：{0}", (str工號 == "") ? "沒有工號" : str工號));
+                            錯誤訊息(sbError, string.Format(" Error(name)：{0}", (str工號 == "") ? "no name" : str工號));
                         //if (b工段Error)
                         //    錯誤訊息(sbError, string.Format(" 工段錯誤：{0}", (str工段 == "") ? "沒有工段" : str工段));
                         if (b數量Error)
-                            錯誤訊息(sbError, string.Format(" 數量錯誤：{0}", (str數量 == "") ? "數量為0" : str數量));
+                            錯誤訊息(sbError, string.Format(" Error(num)：{0}", (str數量 == "") ? "num is zero" : str數量));
                         //if (b工段轉換Error)
                         //    錯誤訊息(sbError, str工段轉換);
                         //str閱卷序號 = "", str款號 = "", str組別 = "", str日期 = "";
@@ -360,7 +361,7 @@ namespace GG.GAMA
                         D_erroraRow[2] = str組別;
                         D_erroraRow[3] = SearchTB.Text;
                         D_erroraRow[4] = str工號;
-                        D_erroraRow[5] = "Error Data：" + sbError;
+                        D_erroraRow[5] = "Data Error：" + sbError;
                         D_errortable.Rows.Add(D_erroraRow);
                     }
                     else
@@ -411,7 +412,7 @@ namespace GG.GAMA
                 }
                 catch (Exception ex)
                 {
-                    Log.ErrorLog(ex, "Get 工段總表明細 uid Error" + Session["FileName"].ToString() + ":", "GM001.aspx");
+                    Log.ErrorLog(ex, "Get 工段總表明細 uid Error" + Session["FileName"].ToString() + ":", "VN002.aspx");
                 }
             }
             return (int)ProductivityHeadID;
@@ -483,16 +484,16 @@ namespace GG.GAMA
                             {
                                 try
                                 {
-                                    Log.ErrorLog(ex1, "Import Excel Error :" + Session["FileName"].ToString(), "GM001.aspx");
+                                    Log.ErrorLog(ex1, "Import Excel Error :" + Session["FileName"].ToString(), "VN002.aspx");
                                 }
                                 catch (Exception ex2)
                                 {
-                                    Log.ErrorLog(ex2, "Insert Error Error:" + Session["FileName"].ToString(), "GM001.aspx");
+                                    Log.ErrorLog(ex2, "Insert Error Error:" + Session["FileName"].ToString(), "VN002.aspx");
                                 }
                                 finally
                                 {
                                     transaction1.Rollback();
-                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Upload fail');</script>");
+                                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Import fail , please contact MIS');</script>");
                                 }
                             }
                             finally
@@ -501,21 +502,21 @@ namespace GG.GAMA
                                 conn1.Dispose();
                                 command1.Dispose();
                                 Session.RemoveAll();
-                                Label1.Text = "Upload success";
+                                Label1.Text = "Upload success.";
                             }
                         }
                     else
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Create fail');</script>");
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Import fail , please contact MIS');</script>");
                 }
             }
             else
             {
                 if (Session["ExcelError"] != null)
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Data error');</script>");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Please check data is correct');</script>");
                 else if (SearchTB.Text.Trim() != "")
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('There is already import on the day');</script>");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('this day have data');</script>");
                 else
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Please Check upday');</script>");
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Please chose date');</script>");
             }
         }
 
@@ -542,7 +543,7 @@ namespace GG.GAMA
                     command1.ExecuteNonQuery();
 
                     transaction1.Commit();
-                    Label1.Text = "Data was deleted.Please Upload again.";
+                    Label1.Text = "Data is deleted, please upload file again.";
                 }
                 catch (Exception ex1)
                 {
@@ -557,7 +558,7 @@ namespace GG.GAMA
                     finally
                     {
                         transaction1.Rollback();
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Deleted fail');</script>");
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Deleted fail , please contact MIS');</script>");
                     }
                 }
                 finally

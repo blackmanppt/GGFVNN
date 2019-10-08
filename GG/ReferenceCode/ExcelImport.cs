@@ -67,6 +67,17 @@ namespace GG.ReferenceCode
             //}
 
         }
+        public void 加班DT(string Team = null)
+        {
+            ExcelTable = new DataTable();
+            ExcelTable.Columns.Add("閱卷序號");
+            ExcelTable.Columns.Add("組別");
+            ExcelTable.Columns.Add("日期");
+            ExcelTable.Columns.Add("工時");
+            ExcelTable.Columns.Add("例外");
+            ExcelTable.Columns.Add("工號");
+
+        }
         public void VNPackage()
         {
             // Type 1：int , Type 2：String , Type 3：日期 , Type 4：float, Type 6：不需要資料 String, Type 7：不需要資料 int , Type 8：float 不需要資料, Type 9:

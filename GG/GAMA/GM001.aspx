@@ -6,12 +6,10 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>GAMA Import</title>
-     <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+        <script src="../Scripts/jquery-3.4.1.min.js"></script>
+
+    <script src="../Scripts/bootstrap.min.js"></script>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/style.css" rel="stylesheet" />
-    <script src="../scripts/bootstrap.min.js"></script>
-    <script src="../scripts/jquery-3.1.1.min.js"></script>
-    <script src="../scripts/scripts.js"></script>
     <style type="text/css">
         .line{
             border: 2px solid black;

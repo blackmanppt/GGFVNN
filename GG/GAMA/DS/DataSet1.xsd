@@ -12,7 +12,7 @@
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="工段匯入" msprop:Generator_TableClassName="工段匯入DataTable" msprop:Generator_TableVarName="table工段匯入" msprop:Generator_TablePropName="工段匯入" msprop:Generator_RowDeletingName="工段匯入RowDeleting" msprop:Generator_RowChangingName="工段匯入RowChanging" msprop:Generator_RowEvHandlerName="工段匯入RowChangeEventHandler" msprop:Generator_RowDeletedName="工段匯入RowDeleted" msprop:Generator_UserTableName="工段匯入" msprop:Generator_RowChangedName="工段匯入RowChanged" msprop:Generator_RowEvArgName="工段匯入RowChangeEvent" msprop:Generator_RowClassName="工段匯入Row">
+        <xs:element name="工段匯入" msprop:Generator_TableClassName="工段匯入DataTable" msprop:Generator_TableVarName="table工段匯入" msprop:Generator_RowChangedName="工段匯入RowChanged" msprop:Generator_TablePropName="工段匯入" msprop:Generator_RowDeletingName="工段匯入RowDeleting" msprop:Generator_RowChangingName="工段匯入RowChanging" msprop:Generator_RowEvHandlerName="工段匯入RowChangeEventHandler" msprop:Generator_RowDeletedName="工段匯入RowDeleted" msprop:Generator_RowClassName="工段匯入Row" msprop:Generator_UserTableName="工段匯入" msprop:Generator_RowEvArgName="工段匯入RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -60,6 +60,16 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CREATEDATE" msprop:Generator_ColumnVarNameInTable="columnCREATEDATE" msprop:Generator_ColumnPropNameInRow="CREATEDATE" msprop:Generator_ColumnPropNameInTable="CREATEDATEColumn" msprop:Generator_UserColumnName="CREATEDATE" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="加班單匯出" msprop:Generator_TableClassName="加班單匯出DataTable" msprop:Generator_TableVarName="table加班單匯出" msprop:Generator_TablePropName="加班單匯出" msprop:Generator_RowDeletingName="加班單匯出RowDeleting" msprop:Generator_RowChangingName="加班單匯出RowChanging" msprop:Generator_RowEvHandlerName="加班單匯出RowChangeEventHandler" msprop:Generator_RowDeletedName="加班單匯出RowDeleted" msprop:Generator_UserTableName="加班單匯出" msprop:Generator_RowChangedName="加班單匯出RowChanged" msprop:Generator_RowEvArgName="加班單匯出RowChangeEvent" msprop:Generator_RowClassName="加班單匯出Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="組別" msprop:Generator_ColumnVarNameInTable="column組別" msprop:Generator_ColumnPropNameInRow="組別" msprop:Generator_ColumnPropNameInTable="組別Column" msprop:Generator_UserColumnName="組別" type="xs:string" minOccurs="0" />
+              <xs:element name="工號" msprop:Generator_ColumnVarNameInTable="column工號" msprop:Generator_ColumnPropNameInRow="工號" msprop:Generator_ColumnPropNameInTable="工號Column" msprop:Generator_UserColumnName="工號" type="xs:string" minOccurs="0" />
+              <xs:element name="時數" msprop:Generator_ColumnVarNameInTable="column時數" msprop:Generator_ColumnPropNameInRow="時數" msprop:Generator_ColumnPropNameInTable="時數Column" msprop:Generator_UserColumnName="時數" type="xs:double" minOccurs="0" />
+              <xs:element name="日期" msprop:Generator_ColumnVarNameInTable="column日期" msprop:Generator_ColumnPropNameInRow="日期" msprop:Generator_ColumnPropNameInTable="日期Column" msprop:Generator_UserColumnName="日期" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
