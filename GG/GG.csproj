@@ -110,6 +110,7 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="GAMA\GM005.aspx" />
     <Content Include="GAMA\GM004.aspx" />
     <Content Include="Scripts\bootstrap-4.3.1\.babelrc.js" />
     <Content Include="Scripts\bootstrap-4.3.1\.gitattributes" />
@@ -656,6 +657,13 @@
     <Compile Include="GAMA\GM002.aspx.designer.cs">
       <DependentUpon>GM002.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GAMA\GM005.aspx.cs">
+      <DependentUpon>GM005.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GAMA\GM005.aspx.designer.cs">
+      <DependentUpon>GM005.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GAMA\GM004.aspx.cs">
       <DependentUpon>GM004.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -702,7 +710,9 @@
   <ItemGroup>
     <EmbeddedResource Include="GAMA\Report\OvertimeReport.rdlc" />
     <EmbeddedResource Include="GAMA\Report\OvertimeReport002.rdlc" />
+    <EmbeddedResource Include="GAMA\Report\OvertimeReport003night.rdlc" />
     <EmbeddedResource Include="GAMA\Report\OvertimeReport003.rdlc" />
+    <EmbeddedResource Include="GAMA\Report\OvertimeReport004.rdlc" />
     <EmbeddedResource Include="GAMA\Report\工段匯入.rdlc" />
   </ItemGroup>
   <ItemGroup>

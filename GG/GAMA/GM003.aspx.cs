@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
 
 namespace GG.GAMA
 {
@@ -150,9 +151,35 @@ namespace GG.GAMA
                 {
                     Label1.Text = "????  ...... Please check excel";
                 }   // FileUpload使用的第一個 if判別式
-
+                DataTable DtCount = new DataTable();
                 if (D_table.Rows.Count > 0)
+                {
                     Session["Excel"] = D_table;
+                    
+                    DtCount.Columns.Add("Error");
+                    foreach (var row in D_table.AsEnumerable().GroupBy(p => new {
+                        Group=p.Field<string>("閱卷序號"),
+                        Line = p.Field<string>("組別"),
+                        ID = p.Field<string>("工號")
+                    }).Select(x => new { ID = x.Key, Count = x.Count() }))
+                    {
+                        {
+                            if (row.Count > 1)
+                            {
+                                DataRow dr = DtCount.NewRow();
+                                dr[0] = string.Format("{0} count: {1} ", row.ID, row.Count);
+                                DtCount.Rows.Add(dr);
+                            }
+                        }
+                    }
+                    if(DtCount.Rows.Count>0)
+                    {
+                        Session["Error2"] = DtCount;
+                        ErrorGV2.DataSource = DtCount;
+                        ErrorGV2.DataBind();
+                    }
+                    
+                }
                 else
                 {
                     Session["Excel"] = null;
@@ -185,11 +212,12 @@ namespace GG.GAMA
             bool berror = false, b工時Error = false;
             StringBuilder sbError = new StringBuilder();
 
-            string str閱卷序號 = "", str組別 = "", str工時 = "", strOther = "";
-            string strRegex工號 = "(G|N|T)[0-9]{4}", strRegex工時 = "1*[0-9]{1}";
+            string str閱卷序號 = "", str組別 = "", str工時 = "", strOther = "", str夜班="";
+            string strRegex工號 = "(G|N|T)[0-9]{4}", strRegex工時 = "^[0-9]*$";
             float f工時 = 0;
             //string strRegex日期 = "\\b(?<year>\\d{4})(?<month>\\d{2})(?<day>\\d{2})\\b";
-
+            Session["ExcelError"] = null;
+            Session["Error2"] = null;
             try
             {
                 if (!string.IsNullOrEmpty(row.GetCell(0).ToString().Trim()))
@@ -249,6 +277,21 @@ namespace GG.GAMA
                                         berror = 錯誤訊息(sbError, "Line Error");
                                     }
                                 }
+                                else if(str組別.Substring(0, 1) == "N" && str組別.Length == 3)
+                                {
+                                    string str_i = str組別.Substring(1);
+                                    int i = 0;
+                                    try
+                                    {
+                                        i = int.Parse(str_i);
+                                        if (i < 29 || i > 40)
+                                            berror = 錯誤訊息(sbError, "Line Error");
+                                    }
+                                    catch (Exception)
+                                    {
+                                        berror = 錯誤訊息(sbError, "Line Error");
+                                    }
+                                }
                                 else
                                     berror = 錯誤訊息(sbError, "Line Error");
                                 break;
@@ -267,15 +310,18 @@ namespace GG.GAMA
                     else
                     {
                         str工時 = row.GetCell(3).ToString().Trim();
-                        //Regex reg = new Regex(strRegex工時);
-                        try
-                        {
-                            f工時 = float.Parse(str工時);
-                        }
-                        catch (Exception)
-                        {
-                            berror = 錯誤訊息(sbError, "Convert hour Error");
-                        }
+                        Regex reg = new Regex(strRegex工時);
+                        if(!reg.IsMatch(str工時))
+                            berror = 錯誤訊息(sbError, "Hour is Error");
+                        else
+                            try
+                            {
+                                f工時 = float.Parse(str工時);
+                            }
+                            catch (Exception)
+                            {
+                                berror = 錯誤訊息(sbError, "Convert hour Error");
+                            }
                     }
                 }
 
@@ -295,13 +341,21 @@ namespace GG.GAMA
                         b工時Error = true;
                     }
                 }
-
-                if (!string.IsNullOrEmpty(row.GetCell(5).ToString().Trim()))
+                try
                 {
-                    strOther = row.GetCell(5).ToString().Trim();
+                    if (!string.IsNullOrEmpty(row.GetCell(18).ToString().Trim()))
+                    {
+                        str夜班 = row.GetCell(18).ToString().Trim();
+                    }
                 }
+                catch (Exception)
+                {
+
+                    
+                }
+                
                 if(row.Cells.Count>5)
-                    for (int z = 6; z < row.Cells.Count; z++)
+                    for (int z = 6; z < row.Cells.Count-1; z++)
                     {
                         string str工號 = "";
                         //工號V9999 工段99 數量9999
@@ -359,6 +413,7 @@ namespace GG.GAMA
                             D_dataRow[3] = f工時;
                             D_dataRow[4] = strOther;
                             D_dataRow[5] = str工號;
+                            D_dataRow[6] = str夜班;
                             D_table.Rows.Add(D_dataRow);
                         }
                     }
@@ -420,7 +475,7 @@ namespace GG.GAMA
 
         protected void UpLoadBT_Click(object sender, EventArgs e)
         {
-            if (SearchTB.Text.Trim() != "" && F_CheckData() && Session["ExcelError"] == null)
+            if (SearchTB.Text.Trim() != "" && F_CheckData() && Session["ExcelError"] == null && Session["Error2"]==null)
             {
                 if (Session["Excel"] != null)
                 {
@@ -450,7 +505,8 @@ namespace GG.GAMA
                                                       ,[日期]
                                                       ,[工號]
                                                       ,[時數]
-                                                      ,[other])
+                                                      ,[other]
+                                                      ,[夜班])
                                                  VALUES
                                                        ({0}
                                                        ,@閱卷序號
@@ -459,6 +515,7 @@ namespace GG.GAMA
                                                        ,@工號
                                                        ,@時數
                                                        ,@other
+                                                       ,@夜班
                                                         )
                                                        ", iIndex);
                                     command1.Parameters.Add("@閱卷序號", SqlDbType.NVarChar).Value = (dt.Rows[i]["閱卷序號"] == null) ? "" : dt.Rows[i]["閱卷序號"].ToString();
@@ -466,7 +523,8 @@ namespace GG.GAMA
                                     command1.Parameters.Add("@日期", SqlDbType.SmallDateTime).Value = (dt.Rows[i]["日期"] == null) ? "" : dt.Rows[i]["日期"].ToString();
                                     command1.Parameters.Add("@工號", SqlDbType.NVarChar).Value = (dt.Rows[i]["工號"] == null) ? "" : dt.Rows[i]["工號"].ToString();
                                     command1.Parameters.Add("@時數", SqlDbType.Float).Value = (dt.Rows[i]["工時"] == null) ? "" : dt.Rows[i]["工時"].ToString();
-                                    command1.Parameters.Add("@other", SqlDbType.NVarChar).Value = (dt.Rows[i]["例外"] == null) ? "" : dt.Rows[i]["例外"].ToString();
+                                    command1.Parameters.Add("@other", SqlDbType.NVarChar).Value = (string.IsNullOrEmpty(dt.Rows[i]["例外"].ToString())) ? "" : dt.Rows[i]["例外"].ToString();
+                                    command1.Parameters.Add("@夜班", SqlDbType.Bit).Value = (string.IsNullOrEmpty(dt.Rows[i]["夜班"].ToString())) ? "false": "true" ;
 
                                     command1.ExecuteNonQuery();
                                     command1.Parameters.Clear();
@@ -508,7 +566,7 @@ namespace GG.GAMA
             }
             else
             {
-                if (Session["ExcelError"] != null)
+                if (Session["ExcelError"] != null || Session["Error2"] != null)
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('Data error');</script>");
                 else if (SearchTB.Text.Trim() != "")
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "<script>alert('There is already import on the day');</script>");

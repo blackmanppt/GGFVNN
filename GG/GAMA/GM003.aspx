@@ -95,6 +95,8 @@
             <SortedDescendingCellStyle BackColor="#F1E5CE" />
             <SortedDescendingHeaderStyle BackColor="#93451F" />
             </asp:GridView>
+            <asp:GridView ID="ErrorGV2" runat="server" CssClass="table table-danger">
+            </asp:GridView>
             <br />
            
 

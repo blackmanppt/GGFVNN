@@ -76,6 +76,7 @@ namespace GG.ReferenceCode
             ExcelTable.Columns.Add("工時");
             ExcelTable.Columns.Add("例外");
             ExcelTable.Columns.Add("工號");
+            ExcelTable.Columns.Add("夜班");
 
         }
         public void VNPackage()

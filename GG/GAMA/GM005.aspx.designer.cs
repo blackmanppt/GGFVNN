@@ -10,7 +10,7 @@
 namespace GG.GAMA {
     
     
-    public partial class GM003 {
+    public partial class GM005 {
         
         /// <summary>
         /// form1 控制項。
@@ -31,138 +31,102 @@ namespace GG.GAMA {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// AreaLB 控制項。
+        /// BrandLB 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AreaLB;
+        protected global::System.Web.UI.WebControls.Label BrandLB;
         
         /// <summary>
-        /// TypeLB 控制項。
+        /// DateRangeTB 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TypeLB;
+        protected global::System.Web.UI.WebControls.TextBox DateRangeTB;
         
         /// <summary>
-        /// Label4 控制項。
+        /// DateRangeTB_CalendarExtender 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::AjaxControlToolkit.CalendarExtender DateRangeTB_CalendarExtender;
         
         /// <summary>
-        /// SearchTB 控制項。
+        /// SearchBT 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchTB;
+        protected global::System.Web.UI.WebControls.Button SearchBT;
         
         /// <summary>
-        /// SearchTB_TextBoxWatermarkExtender 控制項。
+        /// ReportViewer1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::AjaxControlToolkit.TextBoxWatermarkExtender SearchTB_TextBoxWatermarkExtender;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
         
         /// <summary>
-        /// SearchTB_CalendarExtender 控制項。
+        /// UpdatePanel3 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender SearchTB_CalendarExtender;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// DeleteBT 控制項。
+        /// show3 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteBT;
+        protected global::System.Web.UI.WebControls.Button show3;
         
         /// <summary>
-        /// Label3 控制項。
+        /// AlertPanel 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Panel AlertPanel;
         
         /// <summary>
-        /// FileUpload1 控制項。
+        /// MessageLB 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.WebControls.Label MessageLB;
         
         /// <summary>
-        /// CheckBT 控制項。
+        /// AlertBT 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CheckBT;
+        protected global::System.Web.UI.WebControls.Button AlertBT;
         
         /// <summary>
-        /// UpLoadBT 控制項。
+        /// AlertPanel_ModalPopupExtender 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpLoadBT;
-        
-        /// <summary>
-        /// Label1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// ErrorGV 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ErrorGV;
-        
-        /// <summary>
-        /// ErrorGV2 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ErrorGV2;
-        
-        /// <summary>
-        /// ExcelGV 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ExcelGV;
+        protected global::AjaxControlToolkit.ModalPopupExtender AlertPanel_ModalPopupExtender;
     }
 }

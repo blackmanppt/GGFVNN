@@ -695,6 +695,8 @@ namespace GG.GAMA.DS {
             
             private global::System.Data.DataColumn column日期;
             
+            private global::System.Data.DataColumn column夜班;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public 加班單匯出DataTable() {
@@ -762,6 +764,14 @@ namespace GG.GAMA.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn 夜班Column {
+                get {
+                    return this.column夜班;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -797,13 +807,14 @@ namespace GG.GAMA.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public 加班單匯出Row Add加班單匯出Row(string 組別, string 工號, double 時數, System.DateTime 日期) {
+            public 加班單匯出Row Add加班單匯出Row(string 組別, string 工號, double 時數, System.DateTime 日期, string 夜班) {
                 加班單匯出Row row加班單匯出Row = ((加班單匯出Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         組別,
                         工號,
                         時數,
-                        日期};
+                        日期,
+                        夜班};
                 row加班單匯出Row.ItemArray = columnValuesArray;
                 this.Rows.Add(row加班單匯出Row);
                 return row加班單匯出Row;
@@ -830,6 +841,7 @@ namespace GG.GAMA.DS {
                 this.column工號 = base.Columns["工號"];
                 this.column時數 = base.Columns["時數"];
                 this.column日期 = base.Columns["日期"];
+                this.column夜班 = base.Columns["夜班"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -843,6 +855,8 @@ namespace GG.GAMA.DS {
                 base.Columns.Add(this.column時數);
                 this.column日期 = new global::System.Data.DataColumn("日期", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.column日期);
+                this.column夜班 = new global::System.Data.DataColumn("夜班", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.column夜班);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1248,6 +1262,22 @@ namespace GG.GAMA.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string 夜班 {
+                get {
+                    try {
+                        return ((string)(this[this.table加班單匯出.夜班Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("資料表 \'加班單匯出\' 中資料行 \'夜班\' 的值是 DBNull。", e);
+                    }
+                }
+                set {
+                    this[this.table加班單匯出.夜班Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Is組別Null() {
                 return this.IsNull(this.table加班單匯出.組別Column);
             }
@@ -1292,6 +1322,18 @@ namespace GG.GAMA.DS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Set日期Null() {
                 this[this.table加班單匯出.日期Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Is夜班Null() {
+                return this.IsNull(this.table加班單匯出.夜班Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Set夜班Null() {
+                this[this.table加班單匯出.夜班Column] = global::System.Convert.DBNull;
             }
         }
         

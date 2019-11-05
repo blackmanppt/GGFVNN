@@ -12,12 +12,12 @@ using System.Web.UI.WebControls;
 
 namespace GG.GAMA
 {
-    public partial class GM004 : System.Web.UI.Page
+    public partial class GM005 : System.Web.UI.Page
     {
         //字串處理 切字串 = new 字串處理();
         static string strConnectString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["GGFConnectionString"].ToString();
         SysLog Log = new SysLog();
-        string StrPageName = "Overtime Download", StrProgram = "GM004.aspx";
+        string StrPageName = "Overtime Download", StrProgram = "GM005.aspx";
         protected void Page_PreInit(object sender, EventArgs e)
         {
         }
@@ -95,9 +95,6 @@ namespace GG.GAMA
                 ReportViewer1.ProcessingMode = ProcessingMode.Local;
                 ReportDataSource source = new ReportDataSource("加班單匯出", dt);
                 ReportViewer1.LocalReport.DataSources.Clear();
-                ReportViewer1.LocalReport.ReportPath = (NightCB.Checked)?@"GAMA\Report\OvertimeReport003night.rdlc" : @"GAMA\Report\OvertimeReport003.rdlc";
-
-                ReportViewer1.LocalReport.DisplayName = (NightCB.Checked) ? "Night":"Day";
                 ReportViewer1.LocalReport.DataSources.Add(source);
                 ReportViewer1.DataBind();
                 ReportViewer1.LocalReport.Refresh();
@@ -110,7 +107,8 @@ namespace GG.GAMA
         {
 
             StringBuilder strsql = new StringBuilder(string.Format(@" select * from View加班單 where [日期] between '{0}' and '{1}' ", DateRangeTB.Text,Convert.ToDateTime(DateRangeTB.Text).AddDays(7).ToString("yyyy-MM-dd")));
-                strsql.AppendFormat(" and 夜班  = {0} ", (NightCB.Checked)?1:0);
+            //if (!string.IsNullOrEmpty(年度DDL.SelectedValue))
+            //    strsql.AppendFormat(" and upper([季節年度])  = '{0}' ", 年度DDL.SelectedValue.ToUpper());
             //if (!string.IsNullOrEmpty(季節DDL.SelectedValue))
             //    strsql.AppendFormat(" and upper([季節])  = '{0}' ", 季節DDL.SelectedValue.ToUpper());
             //if (!string.IsNullOrEmpty(款號TB.Text))

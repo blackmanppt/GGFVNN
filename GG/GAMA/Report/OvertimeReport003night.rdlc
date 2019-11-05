@@ -15,11 +15,11 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Day</Value>
+                            <Value>Night Team</Value>
                             <Style>
                               <FontSize>11pt</FontSize>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#666666</Color>
+                              <Color>MidnightBlue</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -38,7 +38,7 @@
                         <Style>Solid</Style>
                         <Width>1pt</Width>
                       </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -64,7 +64,7 @@
                             <Style>
                               <FontSize>11pt</FontSize>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#666666</Color>
+                              <Color>MidnightBlue</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -83,7 +83,7 @@
                         <Style>Solid</Style>
                         <Width>1pt</Width>
                       </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -106,7 +106,7 @@
                             <Style>
                               <FontSize>11pt</FontSize>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#666666</Color>
+                              <Color>MidnightBlue</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -125,7 +125,7 @@
                         <Style>Solid</Style>
                         <Width>1pt</Width>
                       </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -172,7 +172,7 @@
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <BackgroundColor>White</BackgroundColor>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -201,7 +201,7 @@
                             <Value />
                             <Style>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#333333</Color>
+                              <Color>MidnightBlue</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -217,7 +217,7 @@
                         <Color>LightGrey</Color>
                         <Style>Solid</Style>
                       </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -252,7 +252,7 @@
                                 <Style>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>yyyy/MM/dd</Format>
-                                  <Color>#333333</Color>
+                                  <Color>MidnightBlue</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -268,7 +268,7 @@
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </BottomBorder>
-                          <BackgroundColor>White</BackgroundColor>
+                          <BackgroundColor>LightGrey</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -328,7 +328,7 @@
                         <Style>Solid</Style>
                         <Width>1pt</Width>
                       </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -379,7 +379,7 @@
                             <Style>Solid</Style>
                             <Width>1pt</Width>
                           </BottomBorder>
-                          <BackgroundColor>White</BackgroundColor>
+                          <BackgroundColor>LightGrey</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GM004.aspx.cs" Inherits="GG.GAMA.GM004" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GM005.aspx.cs" Inherits="GG.GAMA.GM005" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -98,10 +98,6 @@
                         <asp:TextBox ID="DateRangeTB" runat="server" CssClass="form-control"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender runat="server" BehaviorID="DateRangeTB_CalendarExtender" TargetControlID="DateRangeTB" ID="DateRangeTB_CalendarExtender" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
                         <div class="row m-3">
-                            <asp:CheckBox ID="NightCB" runat="server" Text="Night" />
-                            </div>
-                        <div class="row m-3">
-
                             <asp:Button ID="SearchBT" runat="server" Text="Search" OnClick="SearchBT_Click" />
                         </div>
                     </div>
@@ -112,8 +108,8 @@
 
                     <div class="table-responsive">
 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="768px" Width="1024px" Visible="False" >
-<%--    <LocalReport ReportPath="GAMA\Report\OvertimeReport003.rdlc" DisplayName="Overtime">
-                        </LocalReport>--%>
+    <LocalReport ReportPath="GAMA\Report\OvertimeReport004.rdlc" DisplayName="Overtime">
+                        </LocalReport>
                     </rsweb:ReportViewer>
                     </div>
                 </main>
