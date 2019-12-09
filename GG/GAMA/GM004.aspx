@@ -25,7 +25,7 @@
 
     <script type="text/javascript">
         $(function () {
-            $('input[name="DateRangeTB"]').daterangepicker({
+            $('input[name="DateRaTB"]').daterangepicker({
                 "showDropdowns": true,
                 "autoApply": true,
                 "locale": {
@@ -112,8 +112,6 @@
 
                     <div class="table-responsive">
 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Height="768px" Width="1024px" Visible="False" >
-<%--    <LocalReport ReportPath="GAMA\Report\OvertimeReport003.rdlc" DisplayName="Overtime">
-                        </LocalReport>--%>
                     </rsweb:ReportViewer>
                     </div>
                 </main>
@@ -121,7 +119,7 @@
         </div>
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
-                <asp:Button ID="show3" runat="server" Text="show3" Style="" />
+                <asp:Button ID="show3" runat="server" Text="show3" Style="display:none" />
                 <asp:Panel ID="AlertPanel" runat="server" align="center" CssClass="alert-danger w-75" Style="display: none">
                     <div class=" text-center">
                         <h3>

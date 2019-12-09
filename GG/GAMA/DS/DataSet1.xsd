@@ -71,6 +71,7 @@
               <xs:element name="時數" msprop:Generator_ColumnVarNameInTable="column時數" msprop:Generator_ColumnPropNameInRow="時數" msprop:Generator_ColumnPropNameInTable="時數Column" msprop:Generator_UserColumnName="時數" type="xs:double" minOccurs="0" />
               <xs:element name="日期" msprop:Generator_ColumnVarNameInTable="column日期" msprop:Generator_ColumnPropNameInRow="日期" msprop:Generator_ColumnPropNameInTable="日期Column" msprop:Generator_UserColumnName="日期" type="xs:dateTime" minOccurs="0" />
               <xs:element name="夜班" msprop:Generator_ColumnVarNameInTable="column夜班" msprop:Generator_ColumnPropNameInRow="夜班" msprop:Generator_ColumnPropNameInTable="夜班Column" msprop:Generator_UserColumnName="夜班" type="xs:string" minOccurs="0" />
+              <xs:element name="Count" msprop:Generator_ColumnVarNameInTable="columnCount" msprop:Generator_ColumnPropNameInRow="Count" msprop:Generator_ColumnPropNameInTable="CountColumn" msprop:Generator_UserColumnName="Count" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

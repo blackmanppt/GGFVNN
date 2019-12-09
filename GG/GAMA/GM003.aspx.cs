@@ -31,6 +31,13 @@ namespace GG.GAMA
             GetExcelDefine.加班DT();
             String savePath = Server.MapPath(@"~\ExcelUpLoad\GAMA\");
 
+            Session["ExcelError"] = null;
+            ErrorGV.DataSource = null;
+            ErrorGV.DataBind();
+            Session["Error2"] = null;
+            ErrorGV2.DataSource = null;
+            ErrorGV2.DataBind();
+
             DataTable D_table = new DataTable("Excel");
             D_table = GetExcelDefine.ExcelTable.Copy();
             DataTable D_errortable = new DataTable("Error");
@@ -158,8 +165,8 @@ namespace GG.GAMA
                     
                     DtCount.Columns.Add("Error");
                     foreach (var row in D_table.AsEnumerable().GroupBy(p => new {
-                        Group=p.Field<string>("閱卷序號"),
-                        Line = p.Field<string>("組別"),
+                        //Group=p.Field<string>("閱卷序號"),
+                        //Line = p.Field<string>("組別"),
                         ID = p.Field<string>("工號")
                     }).Select(x => new { ID = x.Key, Count = x.Count() }))
                     {
@@ -310,18 +317,20 @@ namespace GG.GAMA
                     else
                     {
                         str工時 = row.GetCell(3).ToString().Trim();
-                        Regex reg = new Regex(strRegex工時);
-                        if(!reg.IsMatch(str工時))
-                            berror = 錯誤訊息(sbError, "Hour is Error");
-                        else
-                            try
-                            {
-                                f工時 = float.Parse(str工時);
-                            }
-                            catch (Exception)
-                            {
+                        //Regex reg = new Regex(strRegex工時);
+                        //if(!reg.IsMatch(str工時))
+                        //    berror = 錯誤訊息(sbError, "Hour is Error");
+                        //else
+                        try
+                        {
+                            f工時 = float.Parse(str工時);
+                            if(f工時==0)
                                 berror = 錯誤訊息(sbError, "Convert hour Error");
-                            }
+                        }
+                        catch (Exception)
+                        {
+                            berror = 錯誤訊息(sbError, "Convert hour Error");
+                        }
                     }
                 }
 
@@ -353,17 +362,29 @@ namespace GG.GAMA
 
                     
                 }
-                
+                int icount=18;
+                if (row.Cells.Count<19)
+                {
+                    icount = row.Cells.Count;
+                }
                 if(row.Cells.Count>5)
-                    for (int z = 6; z < row.Cells.Count-1; z++)
+                    for (int z = 6; z < icount; z++)
                     {
                         string str工號 = "";
                         //工號V9999 工段99 數量9999
 
                         bool b工號Error = false;
-                        if (!string.IsNullOrEmpty(row.GetCell(z).ToString()))
+                        try
                         {
                             str工號 = row.GetCell(z).ToString().Trim().ToUpper();
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                        if (!string.IsNullOrEmpty(str工號))
+                        {
+                            
                             Regex reg = new Regex(strRegex工號);
                             b工號Error = (!reg.IsMatch(str工號) && str工號.Length != 5) ? true : false;
                             //工號轉換
@@ -429,8 +450,13 @@ namespace GG.GAMA
             }
             catch (Exception ex)
             {
-                string xxx = ex.ToString();
-                
+                DataRow D_erroraRow = D_errortable.NewRow();
+                D_erroraRow[0] = str閱卷序號;
+                D_erroraRow[1] = str組別;
+
+                D_erroraRow[3] = "Error：工號資料異常" + ex.ToString();
+                D_errortable.Rows.Add(D_erroraRow);
+
             }
             
         }

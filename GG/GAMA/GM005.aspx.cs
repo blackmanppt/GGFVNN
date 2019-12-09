@@ -30,7 +30,7 @@ namespace GG.GAMA
             Page.Title = StrPageName;
             //StrError名稱 = "";
             //StrProgram = "TempCode2.aspx";
-            DateRangeTB.Attributes["readonly"] = "readonly";
+            //DateRangeTB.Attributes["readonly"] = "readonly";
             #endregion
         }
         protected void DbInit()
@@ -106,7 +106,19 @@ namespace GG.GAMA
         private StringBuilder selectsql()
         {
 
-            StringBuilder strsql = new StringBuilder(string.Format(@" select * from View加班單 where [日期] between '{0}' and '{1}' ", DateRangeTB.Text,Convert.ToDateTime(DateRangeTB.Text).AddDays(7).ToString("yyyy-MM-dd")));
+            StringBuilder strsql = new StringBuilder(string.Format(@" select [組別]
+                                                                  ,[工號]
+                                                                  ,[夜班]
+                                                                  ,[日期]
+	                                                              ,count(*) as Count
+                                                                    FROM [View加班單]
+                                                                    where [日期] between '{0}' and '{1}' 
+                                                             group by [組別]
+                                                                  ,[工號]
+                                                                  ,[夜班]
+                                                                  ,[日期]
+	                                                              having count(*)>1
+                                                            ", DateRangeTB.Text.Substring(0,10), DateRangeTB.Text.Substring(13, 10)));
             //if (!string.IsNullOrEmpty(年度DDL.SelectedValue))
             //    strsql.AppendFormat(" and upper([季節年度])  = '{0}' ", 年度DDL.SelectedValue.ToUpper());
             //if (!string.IsNullOrEmpty(季節DDL.SelectedValue))

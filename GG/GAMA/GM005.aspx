@@ -20,16 +20,20 @@
 
     <script type="text/javascript" src="../scripts/daterangepicker/moment.min.js"></script>
     <script type="text/javascript" src="../scripts/daterangepicker/daterangepicker.min.js"></script>
-    <link href="../scripts/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../Scripts/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
 
 
     <script type="text/javascript">
         $(function () {
+             var start = moment().subtract(7, 'days');
+            var end = moment();
             $('input[name="DateRangeTB"]').daterangepicker({
+                "startDate": start,
+                "endDate": end,
                 "showDropdowns": true,
                 "autoApply": true,
                 "locale": {
-                    "format": "YYYY/MM/DD",
+                    "format": "YYYY-MM-DD",
                     "separator": " - ",
                     "applyLabel": "Apply",
                     "cancelLabel": "Cancel",
@@ -88,22 +92,22 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <nav class="col-md-3 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
                         <h3 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Overtime Day</span>
 
                         </h3>
                         
-                        <asp:TextBox ID="DateRangeTB" runat="server" CssClass="form-control"></asp:TextBox>
-                        <ajaxToolkit:CalendarExtender runat="server" BehaviorID="DateRangeTB_CalendarExtender" TargetControlID="DateRangeTB" ID="DateRangeTB_CalendarExtender" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>
+                        <asp:TextBox ID="DateRangeTB" runat="server" CssClass="form-control text-md-left"></asp:TextBox>
+                        <%--<ajaxToolkit:CalendarExtender runat="server" BehaviorID="DateRangeTB_CalendarExtender" TargetControlID="DateRangeTB" ID="DateRangeTB_CalendarExtender" Format="yyyy-MM-dd"></ajaxToolkit:CalendarExtender>--%>
                         <div class="row m-3">
                             <asp:Button ID="SearchBT" runat="server" Text="Search" OnClick="SearchBT_Click" />
                         </div>
                     </div>
                 </nav>
 
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
                     
 
                     <div class="table-responsive">
@@ -117,7 +121,7 @@
         </div>
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>
-                <asp:Button ID="show3" runat="server" Text="show3" Style="" />
+                <asp:Button ID="show3" runat="server" Text="show3" Style="display:none" />
                 <asp:Panel ID="AlertPanel" runat="server" align="center" CssClass="alert-danger w-75" Style="display: none">
                     <div class=" text-center">
                         <h3>
