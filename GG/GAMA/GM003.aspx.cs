@@ -251,22 +251,43 @@ namespace GG.GAMA
                         str組別 = row.GetCell(1).ToString().Trim().ToUpper();
                         switch (str組別)
                         {
-                            case "ST":
-                            case "SAM":
-                            case "SF":
                             case "CL":
                             case "CU":
                             case "PA":
                             case "PR":
+                            case "SF":
                             case "MA":
                             case "ME":
                             case "WA":
                             case "OT":
+                            case "ST":
                             case "QC":
                             case "QA":
                             case "IE":
-                            case "PL":
                             case "CK":
+                            case "PL":
+                            case "SAM":
+                            case "N29":
+                            case "B01":
+                            case "B02":
+                            case "B03":
+                            case "B04":
+                            case "B05":
+                            case "BCL":
+                            case "BCU":
+                            case "BPA":
+                            case "BPR":
+                            case "BSF":
+                            case "BMA":
+                            case "BME":
+                            case "BWA":
+                            case "BOT":
+                            case "BST":
+                            case "BQC":
+                            case "BQA":
+                            case "BIE":
+                            case "BCK":
+                            case "BPL":
                                 break;
                             default:
                                 if (str組別.Substring(0, 1) == "G" && str組別.Length == 3)
